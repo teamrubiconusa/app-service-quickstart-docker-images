@@ -7,8 +7,16 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'your-container-image-name:$(build.buildId)'
-
+  nginxSourceFolder: 'nginx-fpm/0.4/'
+  nginxImageName: 'nginx-fpm:$(build.buildId)'
+ 
 steps:
-- script: docker build -f Dockerfile -t $(imageName) .
-  displayName: 'docker build'
+- task: CopyFiles@2
+  displayName: 'Copy nginx Dockerfiles to: $(build.sourcesdirectory)'
+  inputs:
+    SourceFolder: '$(nginxSourceFolder)'
+    Contents: '*'
+    TargetFolder: '$(build.sourcesdirectory)'
+ 
+- script: docker build -f Dockerfile -t $(nginxImageName) .
+  displayName: 'nginx docker build'
