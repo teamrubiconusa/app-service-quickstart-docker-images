@@ -14,11 +14,11 @@ ENV PHP_HOME "/usr/local/etc/php"
 ENV PHP_CONF_DIR $PHP_HOME
 ENV PHP_CONF_FILE $PHP_CONF_DIR"/php.ini"
 # mariadb
-ENV MARIADB_DATA_DIR "/home/data/mysql"
-ENV MARIADB_LOG_DIR "/home/LogFiles/mysql"
+#ENV MARIADB_DATA_DIR "/home/data/mysql"
+#ENV MARIADB_LOG_DIR "/home/LogFiles/mysql"
 # phpmyadmin
-ENV PHPMYADMIN_SOURCE "/usr/src/phpmyadmin"
-ENV PHPMYADMIN_HOME "/home/phpmyadmin"
+#ENV PHPMYADMIN_SOURCE "/usr/src/phpmyadmin"
+#ENV PHPMYADMIN_HOME "/home/phpmyadmin"
 #Web Site Home
 ENV HOME_SITE "/home/site/wwwroot"
 # redis
@@ -51,7 +51,7 @@ RUN set -ex \
 # ------
 # mariadb
 # ------
-    && apk add --no-cache mariadb mariadb-client \
+#    && apk add --no-cache mariadb mariadb-client \
 #---------------
 # openrc service
 #---------------
@@ -194,8 +194,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 # -------------
 # phpmyadmin
 # -------------
-RUN mkdir -p $PHPMYADMIN_SOURCE 
-COPY phpMyAdmin.tar.gz $PHPMYADMIN_SOURCE/phpMyAdmin.tar.gz
+#RUN mkdir -p $PHPMYADMIN_SOURCE 
+#COPY phpMyAdmin.tar.gz $PHPMYADMIN_SOURCE/phpMyAdmin.tar.gz
 # ----------
 # ~. upgrade/clean up
 # ----------
@@ -212,15 +212,15 @@ RUN set -ex\
 	&& mkdir -p /var/www \
 	&& chown -R www-data:www-data /var/www \	
 	##
-	&& rm -rf /var/log/mysql \
-	&& ln -s $MARIADB_LOG_DIR /var/log/mysql \
+#	&& rm -rf /var/log/mysql \
+#	&& ln -s $MARIADB_LOG_DIR /var/log/mysql \
 	##
 	&& rm -rf /var/log/nginx \
 	&& ln -s $NGINX_LOG_DIR /var/log/nginx \
 	##
-    && ln -s ${HOME_SITE} /var/www/html \
+    && ln -s ${HOME_SITE} /var/www/html
     ##	
-    && ln -s ${PHPMYADMIN_HOME} /var/www/phpmyadmin
+#    && ln -s ${PHPMYADMIN_HOME} /var/www/phpmyadmin
 	
 # ssh
 COPY sshd_config /etc/ssh/ 
@@ -233,9 +233,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 #COPY default.conf /etc/nginx/conf.d/default.conf
 COPY hostingstart.html /home/site/wwwroot/index.html
 # phpmyadmin
-COPY phpmyadmin-config.inc.php $PHPMYADMIN_SOURCE/
-COPY mariadb.cnf /etc/mysql/
-COPY phpmyadmin-nginx.conf $PHPMYADMIN_SOURCE/phpmyadmin-nginx.conf
+#COPY phpmyadmin-config.inc.php $PHPMYADMIN_SOURCE/
+#COPY mariadb.cnf /etc/mysql/
+#COPY phpmyadmin-nginx.conf $PHPMYADMIN_SOURCE/phpmyadmin-nginx.conf
 RUN \
    echo "<?php phpinfo();" > /home/site/wwwroot/index.php 
 # =====
