@@ -16,11 +16,11 @@ ENV PHP_HOME "/usr/local/etc/php"
 ENV PHP_CONF_DIR $PHP_HOME
 ENV PHP_CONF_FILE $PHP_CONF_DIR"/php.ini"
 # mariadb
-ENV MARIADB_DATA_DIR "/home/data/mysql"
-ENV MARIADB_LOG_DIR "/home/LogFiles/mysql"
+#ENV MARIADB_DATA_DIR "/home/data/mysql"
+#ENV MARIADB_LOG_DIR "/home/LogFiles/mysql"
 # phpmyadmin
-ENV PHPMYADMIN_SOURCE "/usr/src/phpmyadmin"
-ENV PHPMYADMIN_HOME "/home/phpmyadmin"
+#ENV PHPMYADMIN_SOURCE "/usr/src/phpmyadmin"
+#ENV PHPMYADMIN_HOME "/home/phpmyadmin"
 # redis
 ENV PHPREDIS_VERSION 3.1.2
 # wordpress
@@ -109,7 +109,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 COPY wp-config.php $WORDPRESS_SOURCE/
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 # phpmyadmin
-COPY phpmyadmin-default.conf $PHPMYADMIN_SOURCE/phpmyadmin-default.conf
+#COPY phpmyadmin-default.conf $PHPMYADMIN_SOURCE/phpmyadmin-default.conf
 # nginx
 COPY spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 COPY entrypoint.sh /usr/local/bin/
