@@ -10,7 +10,7 @@ variables:
   nginxBuildDirectory: 'nginx-fpm/0.4/'
   nginxImageName: 'nginx-fpm:$(build.buildId)'
   wpBuildDirectory: 'wordpress-alpine-php/0.61/'
-  wordpressImageName: 'wordpress-alpine-php:$(build.buildId)'
+  wpImageName: 'wordpress-alpine-php:$(build.buildId)'
  
 steps:
 - task: Docker@1
@@ -32,4 +32,18 @@ steps:
   inputs:
     command: 'Push an Image'
     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
+    includeLatestTag: true
+
+- task: Docker@1
+  displayName: 'Build wp image'
+  inputs:
+    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(wpImageName)'
+    dockerFile: '$(wpBuildDirectory)/Dockerfile'
+    useDefaultContext: true
+ 
+- task: Docker@1
+  displayName: 'Push wp image to Azure Container Registry'
+  inputs:
+    command: 'Push an Image'
+    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(wpImageName)'
     includeLatestTag: true
