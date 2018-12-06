@@ -40,6 +40,7 @@ steps:
     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(wpImageName)'
     dockerFile: '$(wpBuildDirectory)/Dockerfile'
     useDefaultContext: true
+    includeLatestTag: true
  
 - task: Docker@1
   displayName: 'Push wp image to Azure Container Registry'
