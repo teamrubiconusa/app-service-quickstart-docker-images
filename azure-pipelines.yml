@@ -26,6 +26,7 @@ steps:
     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
     dockerFile: '$(nginxBuildDirectory)/Dockerfile'
     useDefaultContext: true
+    includeLatestTag: true
  
 - task: Docker@1
   displayName: 'Push nginx image to Azure Container Registry'
