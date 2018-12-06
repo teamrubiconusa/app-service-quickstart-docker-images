@@ -7,16 +7,29 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  nginxSourceFolder: 'nginx-fpm/0.4/'
+  nginxBuildDirectory: 'nginx-fpm/0.4/'
   nginxImageName: 'nginx-fpm:$(build.buildId)'
+  wpBuildDirectory: 'wordpress-alpine-php/0.61/'
+  wordpressImageName: 'wordpress-alpine-php:$(build.buildId)'
  
 steps:
-- task: CopyFiles@2
-  displayName: 'Copy nginx Dockerfiles to: $(build.sourcesdirectory)'
+- task: Docker@1
+  displayName: 'Login to Azure Container Registry'
   inputs:
-    SourceFolder: '$(nginxSourceFolder)'
-    Contents: '*'
-    TargetFolder: '$(build.sourcesdirectory)'
+    command: login
+    azureSubscriptionEndpoint: 'TRTech_managed_preprod (614f7a4f-e655-4593-94b6-37b4e7d75fba)'
+    azureContainerRegistry: teamrubiconwebsitecontainers.azurecr.io
  
-- script: docker build -f Dockerfile -t $(nginxImageName) .
-  displayName: 'nginx docker build'
+- task: Docker@1
+  displayName: 'Build nginx image'
+  inputs:
+    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
+    dockerFile: '$(nginxBuildDirectory)/Dockerfile'
+    useDefaultContext: true
+ 
+- task: Docker@1
+  displayName: 'Push nginx image to Azure Container Registry'
+  inputs:
+    command: 'Push an Image'
+    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
+    includeLatestTag: true
