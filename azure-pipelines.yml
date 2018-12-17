@@ -33,6 +33,14 @@ steps:
     command: 'Push an Image'
     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
 
+- bash: 'mkdir -p wordpress-alpine-php/0.61/web'
+# Download Pipeline Artifact
+- task: DownloadPipelineArtifact@0
+  inputs:
+    #pipelineId: # Optional
+    artifactName: 'contents-artifact' 
+    targetPath: 'wordpress-alpine-php/0.61/web'
+
 - task: Docker@1
   displayName: 'Build wp image'
   inputs:
@@ -46,4 +54,6 @@ steps:
   inputs:
     command: 'Push an Image'
     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(wpImageName)'
+
+
 

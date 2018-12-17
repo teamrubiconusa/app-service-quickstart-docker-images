@@ -107,6 +107,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 # final
 # =====
 COPY wp-config.php $WORDPRESS_SOURCE/
+COPY web $WORDPRESS_HOME/
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 # phpmyadmin
 #COPY phpmyadmin-default.conf $PHPMYADMIN_SOURCE/phpmyadmin-default.conf
