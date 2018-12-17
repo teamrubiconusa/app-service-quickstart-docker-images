@@ -20,24 +20,24 @@ steps:
     azureSubscriptionEndpoint: 'TRTech_managed_preprod (614f7a4f-e655-4593-94b6-37b4e7d75fba)'
     azureContainerRegistry: teamrubiconwebsitecontainers.azurecr.io
  
-- task: Docker@1
-  displayName: 'Build nginx image'
-  inputs:
-    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
-    dockerFile: '$(nginxBuildDirectory)/Dockerfile'
-    useDefaultContext: true
+# - task: Docker@1
+#   displayName: 'Build nginx image'
+#   inputs:
+#     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
+#     dockerFile: '$(nginxBuildDirectory)/Dockerfile'
+#     useDefaultContext: true
  
-- task: Docker@1
-  displayName: 'Push nginx image to Azure Container Registry'
-  inputs:
-    command: 'Push an Image'
-    imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
+# - task: Docker@1
+#   displayName: 'Push nginx image to Azure Container Registry'
+#   inputs:
+#     command: 'Push an Image'
+#     imageName: 'teamrubiconwebsitecontainers.azurecr.io/$(nginxImageName)'
 
 - bash: 'mkdir -p wordpress-alpine-php/0.61/web'
 # Download Pipeline Artifact
 - task: DownloadPipelineArtifact@0
   inputs:
-    #pipelineId: # Optional
+    pipelineId: 69
     artifactName: 'contents-artifact' 
     targetPath: 'wordpress-alpine-php/0.61/web'
 
