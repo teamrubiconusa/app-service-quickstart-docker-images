@@ -1,7 +1,7 @@
 #
 # Dockerfile for WordPress
 #
-FROM teamrubiconwebsitecontainers.azurecr.io/nginx-fpm:latest
+FROM appsvcorg/nginx-fpm:0.4
 MAINTAINER Azure App Service Container Images <appsvc-images@microsoft.com>
 # ========
 # ENV vars
