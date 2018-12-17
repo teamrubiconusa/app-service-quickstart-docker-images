@@ -35,11 +35,11 @@ steps:
 
 - bash: 'mkdir -p wordpress-alpine-php/0.61/web'
 # Download Pipeline Artifact
-- task: DownloadPipelineArtifact@0
-  inputs:
-    pipelineId: 69
-    artifactName: 'contents-artifact' 
-    targetPath: 'wordpress-alpine-php/0.61/web'
+# - task: DownloadPipelineArtifact@0
+#   inputs:
+#     pipelineId: 69
+#     artifactName: 'contents-artifact' 
+#     targetPath: 'wordpress-alpine-php/0.61/web'
 
 - task: Docker@1
   displayName: 'Build wp image'
