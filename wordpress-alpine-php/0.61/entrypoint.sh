@@ -49,26 +49,26 @@
 setup_wordpress(){
 	test ! -d "$WORDPRESS_HOME" && echo "INFO: $WORDPRESS_HOME not found. creating ..." && mkdir -p "$WORDPRESS_HOME"
 	cd $WORDPRESS_HOME
-    if ! [ -e wp-includes/version.php ]; then
-        echo "INFO: There in no wordpress, going to GIT pull...:"
-        rm -rf * .*
-        GIT_REPO=${GIT_REPO:-https://github.com/azureappserviceoss/wordpress-azure}
-	    GIT_BRANCH=${GIT_BRANCH:-linux-appservice}
-	    echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
-	    echo "REPO: "$GIT_REPO
-	    echo "BRANCH: "$GIT_BRANCH
-	    echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
+    # if ! [ -e wp-includes/version.php ]; then
+    #     echo "INFO: There in no wordpress, going to GIT pull...:"
+    #     rm -rf * .*
+    #     GIT_REPO=${GIT_REPO:-https://github.com/azureappserviceoss/wordpress-azure}
+	#     GIT_BRANCH=${GIT_BRANCH:-linux-appservice}
+	#     echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
+	#     echo "REPO: "$GIT_REPO
+	#     echo "BRANCH: "$GIT_BRANCH
+	#     echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
     
-	    echo "INFO: Clone from "$GIT_REPO		
-        git clone $GIT_REPO $WORDPRESS_HOME	
-	    if [ "$GIT_BRANCH" != "master" ];then
-		    echo "INFO: Checkout to "$GIT_BRANCH
-		    git fetch origin
-	        git branch --track $GIT_BRANCH origin/$GIT_BRANCH && git checkout $GIT_BRANCH
-	    fi	        
-    else
-        echo "INFO: There is one wordpress exist, no need to GIT pull again."
-    fi
+	#     echo "INFO: Clone from "$GIT_REPO		
+    #     git clone $GIT_REPO $WORDPRESS_HOME	
+	#     if [ "$GIT_BRANCH" != "master" ];then
+	# 	    echo "INFO: Checkout to "$GIT_BRANCH
+	# 	    git fetch origin
+	#         git branch --track $GIT_BRANCH origin/$GIT_BRANCH && git checkout $GIT_BRANCH
+	#     fi	        
+    # else
+    #     echo "INFO: There is one wordpress exist, no need to GIT pull again."
+    # fi
 	
 	# Although in AZURE, we still need below chown cmd.
     chown -R www-data:www-data $WORDPRESS_HOME    
