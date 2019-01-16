@@ -96,7 +96,8 @@ RUN set -ex \
 	&& apk update \
 	&& apk upgrade \
 	&& rm -rf /var/cache/apk/* \
-	&& rm -rf /tmp/*
+	&& rm -rf /tmp/* \
+	&& mkdir /srv/www/web/
 # =========
 # Configure
 # =========
