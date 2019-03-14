@@ -107,8 +107,8 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 # =====
 # final
 # =====
-# COPY wp-config.php /home/site/wwwroot/
-# COPY web /home/site/wwwroot/
+COPY wp-config.php /home/site/wwwroot/
+COPY web /home/site/wwwroot/
 COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 # phpmyadmin
 #COPY phpmyadmin-default.conf $PHPMYADMIN_SOURCE/phpmyadmin-default.conf
