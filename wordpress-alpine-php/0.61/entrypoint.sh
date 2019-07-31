@@ -189,3 +189,5 @@ if test ! -e /home/LogFiles/nginx/error.log; then
 fi
 /usr/sbin/nginx -g "daemon off;"
 
+echo "Creating symlink..."
+ln -s /srv/www/teamrubiconusa.org/shared/uploads /home/site/wwwroot/web/app
