@@ -42,7 +42,8 @@ steps:
     project: '16f17f22-030b-41d7-b26d-ca46190f9d25'
     definition: '3'
     buildVersionToDownload: 'latest'
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: 'wordpress-alpine-php/0.61/web'
+    artifact: 'contents-artifact'
 
 # Download Pipeline Artifact
 # - task: DownloadPipelineArtifact@2
