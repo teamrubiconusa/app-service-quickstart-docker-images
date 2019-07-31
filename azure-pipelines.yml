@@ -38,9 +38,18 @@ steps:
 # Download Pipeline Artifact
 - task: DownloadPipelineArtifact@2
   inputs:
-    pipeline: 132
-    artifact: 'contents-artifact' 
-    path: 'wordpress-alpine-php/0.61/web'
+    buildType: 'specific'
+    project: 'teamrubiconusa.website-redesign'
+    definition: '3'
+    buildVersionToDownload: 'latest'
+    targetPath: '$(Pipeline.Workspace)'
+
+# Download Pipeline Artifact
+# - task: DownloadPipelineArtifact@2
+#   inputs:
+#     pipeline: 132
+#     artifact: 'contents-artifact' 
+#     path: 'wordpress-alpine-php/0.61/web'
 
 
 # - task: DownloadBuildArtifacts@0
