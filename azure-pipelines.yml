@@ -38,7 +38,7 @@ steps:
 # Download Pipeline Artifact
 - task: DownloadPipelineArtifact@0
   inputs:
-    pipelineId: 69
+    # pipelineId: 'current'
     artifactName: 'contents-artifact' 
     targetPath: 'wordpress-alpine-php/0.61/web'
 
