@@ -36,11 +36,11 @@ steps:
 - bash: 'mkdir -p wordpress-alpine-php/0.61/web'
 
 # Download Pipeline Artifact
-- task: DownloadPipelineArtifact@0
+- task: DownloadPipelineArtifact@2
   inputs:
-    # pipelineId: 'current'
-    artifactName: 'contents-artifact' 
-    targetPath: 'wordpress-alpine-php/0.61/web'
+    pipeline: 132
+    artifact: 'contents-artifact' 
+    path: 'wordpress-alpine-php/0.61/web'
 
 
 # - task: DownloadBuildArtifacts@0
