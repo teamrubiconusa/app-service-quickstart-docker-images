@@ -117,6 +117,7 @@ COPY spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
 # create directories for media and create symlink
 RUN mkdir -p /srv/www/teamrubiconusa.org/shared/uploads \
     && mkdir -p /home/site/wwwroot/web/app \
+	&& rm -rf /home/site/wwwroot/web/app/uploads \
     && ln -s /srv/www/teamrubiconusa.org/shared/uploads /home/site/wwwroot/web/app
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
