@@ -114,6 +114,10 @@ COPY uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 #COPY phpmyadmin-default.conf $PHPMYADMIN_SOURCE/phpmyadmin-default.conf
 # nginx
 COPY spec-settings.conf /etc/nginx/conf.d/spec-settings.conf
+# create directories for media and create symlink
+RUN mkdir -p /srv/www/teamrubiconusa.org/shared/uploads \
+    && mkdir -p /home/site/wwwroot/web/app \
+    && ln -s /srv/www/teamrubiconusa.org/shared/uploads /home/site/wwwroot/web/app
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 EXPOSE 2222 80

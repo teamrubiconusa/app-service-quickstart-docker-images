@@ -188,11 +188,3 @@ if test ! -e /home/LogFiles/nginx/error.log; then
     touch /home/LogFiles/nginx/error.log
 fi
 /usr/sbin/nginx -g "daemon off;"
-
-echo "Creating directories for symlink"
-mkdir /srv/www/teamrubiconusa.org
-mkdir /srv/www/teamrubiconusa.org/shared
-mkdir /srv/www/teamrubiconusa.org/shared/uploads
-
-echo "Creating symlink..."
-ln -s /srv/www/teamrubiconusa.org/shared/uploads /home/site/wwwroot/web/app/
